@@ -15,7 +15,7 @@ package br.rogerio.model;
 public class Lista {
 
     private final int MAXTAM;
-    private String[] array;
+    private char[] array;
     private int ultimo;
 
     public Lista(int tamanho) {
@@ -23,7 +23,7 @@ public class Lista {
             throw new RuntimeException("Tamanho deve ser maior de zero!\n");
         }
         MAXTAM = tamanho;
-        array = new String[MAXTAM];
+        array = new char[MAXTAM];
         ultimo = -1;
     }
 
@@ -39,7 +39,7 @@ public class Lista {
         return ultimo + 1;
     }
 
-    public void inserirNoInicio(String elemento) {
+    public void inserirNoInicio(char elemento) {
         if (isFull()) {
             throw new RuntimeException("A lista está cheia!\n");
         }
@@ -51,13 +51,13 @@ public class Lista {
     }
 
     public void ordenarLista() {
-        String atual;
+        char atual;
         int i;
         int j;
         for (i = 1; i < ultimo + 1; i++) {
             atual = array[i];
             j = i - 1;
-            while (j >= 0 && atual.compareTo(array[j]) <= 0) {
+            while (j >= 0 && (array[j]) >= 0) {
                 array[j + 1] = array[j];
                 j--;
             }
@@ -66,13 +66,13 @@ public class Lista {
         mostrarLista();
     }
 
-    public void inserirDeFormaOrdenada(String elemento) {
+    public void inserirDeFormaOrdenada(char elemento) {
         if (isFull()) {
             throw new RuntimeException("A lista está cheia!\n");
         }
         ultimo++;
         int i = ultimo;
-        while ((i > 0) && (elemento.compareTo(array[i - 1]) >= 0)) {
+        while ((i > 0) && ((array[i - 1]) >= 0)) {
             array[i] = array[i - 1];
             i--;
         }
@@ -91,7 +91,7 @@ public class Lista {
         }
     }
 
-    public void inserirNoFim(String elemento) {
+    public void inserirNoFim(char elemento) {
         if (isFull()) {
             throw new RuntimeException("A lista está cheia!\n");
         }
@@ -99,7 +99,7 @@ public class Lista {
         array[ultimo] = elemento;
     }
 
-    public void inserirNaPosicaoInformada(int posicao, String elemento) {
+    public void inserirNaPosicaoInformada(int posicao, char elemento) {
         if (isFull()) {
             throw new RuntimeException("A lista está cheia!\n");
         }
@@ -143,7 +143,7 @@ public class Lista {
         ultimo--;
     }
 
-    public int buscarPosicaoDoElemento(String elemento) {
+    public int buscarPosicaoDoElemento(char elemento) {
         for (int i = 0; i <= ultimo; i++) {
             if (array[i] == elemento) {
                 return i;
@@ -152,7 +152,7 @@ public class Lista {
         return -1;
     }
 
-    public boolean removerElemento(String elemento) {
+    public boolean removerElemento(char elemento) {
         int pos = buscarPosicaoDoElemento(elemento);
         if (pos == -1) {
             return false;
@@ -161,21 +161,21 @@ public class Lista {
         return true;
     }
 
-    public String getElementoNoInicio() {
+    public char getElementoNoInicio() {
         if (isEmpty()) {
             throw new RuntimeException("A lista está vazia!\n");
         }
         return array[0];
     }
 
-    public String getElementoNoFim() {
+    public char getElementoNoFim() {
         if (isEmpty()) {
             throw new RuntimeException("A lista está vazia!\n");
         }
         return array[ultimo];
     }
 
-    public String getElementoNaPosicaoInformata(int posicao) {
+    public char getElementoNaPosicaoInformata(int posicao) {
         if (isEmpty()) {
             throw new RuntimeException("A lista está vazia!\n");
         }
@@ -189,7 +189,7 @@ public class Lista {
         ultimo = -1;
     }
 
-    public boolean alterarElemento(String elemento, String novoElemento) {
+    public boolean alterarElemento(char elemento, char novoElemento) {
 
         for (int i = 0; i < size(); i++) {
             if (elemento == array[i]) {
@@ -200,39 +200,4 @@ public class Lista {
         return false;
     }
 
-    public void receberVetor(String[] vetor) {
-
-        if (isFull()) {
-            System.out.println("A lista está cheia!\n");
-        }
-
-        if (vetor.length > 0) {
-            for (int i = 0; i < vetor.length; i++) {
-                if (!vetor[i].equals("null")) {
-                    inserirNoFim(vetor[i]);
-                } else {
-                    System.out.println("O vetor informado está com"
-                            + " valores nulos\nVerifique!");
-                    break;
-                }
-            }
-        }
-    }
-
-    public void imprimirListaInversa() {
-
-        if (isEmpty()) {
-            System.out.println("A lista informada está vazia!\n");
-        }
-        System.out.println("***** Lista impressa na ordem inversa ****");
-        for (int i = ultimo; i >= 0; i--) {
-            if (!array[i].equals(null)) {
-                System.out.printf("%s, ", array[i]);
-            } else {
-                System.out.println("A lista está vazia\nVerifique");
-                break;
-            }
-        }
-        System.out.println("");
-    }
 }

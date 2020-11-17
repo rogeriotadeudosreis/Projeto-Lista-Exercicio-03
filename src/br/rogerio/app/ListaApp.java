@@ -18,23 +18,30 @@ public class ListaApp {
 
     public static void main(String[] args) {
 
-        String[] vetor = {"e", "s", "f", "c", "a"};
-        String[] vetor1 = new String[5];
-        Lista lista = new Lista(vetor1.length);
-        
-        System.out.printf("Vetor informado de: %d%s\n", vetor.length, " posições");
-        for (int i = 0; i < vetor1.length; i++) {
-            System.out.print(vetor1[i] + ", ");
-        }
-        System.out.println("");
+        char[] vetor = {'a', 'e', 'i', 'o', 'u'};
+        Lista lista = new Lista(vetor.length);
 
-        lista.receberVetor(vetor);
-        lista.mostrarLista();
-        
-        lista.imprimirListaInversa();
-        
-        lista.ordenarLista();
-        
+        try {
+            System.out.printf("Vetor de char informado de: %d%s\n", vetor.length, " posições");
+            for (int i = 0; i < vetor.length; i++) {
+                System.out.print(vetor[i] + ", ");
+                lista.inserirNaPosicaoInformada(i, vetor[i]);
+            }
+            System.out.println("");
+            
+            imprimirDeFormaInversa(lista);
+            
+        } catch (Exception erro) {
+            System.out.println(erro.getMessage());
+        }
     }
 
+    private static void imprimirDeFormaInversa(Lista lista) {
+
+        System.out.printf("%s\n", "Impresso de forma inversa");
+        for (int i = lista.size() - 1; i >= 0; i--) {
+            System.out.print(lista.getElementoNaPosicaoInformata(i) + ", ");
+        }
+        System.out.println("");
+    }
 }
